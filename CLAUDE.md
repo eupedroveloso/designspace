@@ -223,6 +223,23 @@ Convenção de nome: `YYYY-MM-DD-cliente-tarefa`. Ex.: `briefs/2026-08-03-acme-l
 
 ---
 
+## Git — fluxo de branches
+
+`main` é a branch padrão. **Nunca commite direto nela.** Toda alteração nasce na `pedro`, sobe para a `pedro`, e só depois vai para a `main`:
+
+```bash
+git add -A && git commit          # sempre na pedro
+git push origin pedro
+git checkout main && git merge --ff-only pedro && git push origin main
+git checkout pedro                # volta, é onde o trabalho acontece
+```
+
+O merge é sempre `--ff-only`. Se ele recusar, as duas divergiram — alguém commitou na `main` direto. Pare e avise em vez de forçar.
+
+Commit e push acontecem **quando o usuário pede**, não a cada alteração.
+
+---
+
 ## Agentes
 
 | Agente | Quando usar |
