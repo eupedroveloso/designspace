@@ -72,11 +72,39 @@
       "Bash(mkdir:*)",
       "Bash(file:*)",
       "Bash(sips:*)",
-      "Bash(curl -s * https://api.figma.com/*)"
+      "Bash(curl -s * https://api.figma.com/*)",
+      "Bash(.claude/hooks/figma-destino.sh:*)"
     ],
     "deny": [
       "mcp__claude_ai_Magnific__folders_delete",
       "mcp__claude_ai_Magnific__library_delete"
+    ]
+  },
+
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "^mcp__.*__(use_figma|create_new_file|generate_diagram|generate_figma_design|upload_assets|add_code_connect_map|send_code_connect_mappings|figma_execute|figma_execute_across_files|figma_create_[a-z_]+|figma_add_[a-z_]+|figma_set_[a-z_]+|figma_batch_[a-z_]+|figma_import_[a-z_]+|figma_delete_[a-z_]+|figma_rename_[a-z_]+|figma_update_variable|figma_clone_node|figma_move_node|figma_resize_node|figma_instantiate_component|figma_append_to_slot|figma_duplicate_slide|figma_reorder_slides|figma_reset_slot|figma_skip_slide|figma_setup_design_tokens|figma_post_comment|figma_arrange_component_set|figjam_create_[a-z_]+|figjam_auto_arrange)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR/.claude/hooks/figma-destino.sh\" guard",
+            "timeout": 10,
+            "statusMessage": "Conferindo o destino no Figma"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR/.claude/hooks/figma-destino.sh\" clear",
+            "timeout": 10
+          }
+        ]
+      }
     ]
   }
 }

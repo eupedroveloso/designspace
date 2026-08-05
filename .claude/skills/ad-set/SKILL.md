@@ -9,6 +9,9 @@ Objetivo: um criativo aprovado vira o conjunto completo, sem que a composição 
 
 ## Passos
 
+### 0. Pergunte onde o conjunto nasce
+Link do arquivo Figma, página e seção — pelo usuário, nesta sessão. Rode `/figma-destino` e registre. O arquivo do criativo aprovado **não** é resposta: o conjunto pode ir para outro lugar, e quem decide é ele.
+
 ### 1. Confirme a base
 Você precisa de um criativo aprovado — creation do Magnific ou frame do Figma. Se ainda não existe, isso é trabalho de `/brief` + `visual-generator`, não de ad-set.
 

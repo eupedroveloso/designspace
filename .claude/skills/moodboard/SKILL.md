@@ -9,6 +9,9 @@ Objetivo: alinhar estética **antes** de gastar em produção final. Um moodboar
 
 ## Passos
 
+### 0. Pergunte onde o moodboard nasce
+Link do arquivo Figma ou FigJam, pelo usuário, nesta sessão. Rode `/figma-destino` e registre antes de gerar a primeira referência — não depois, quando já queimou crédito.
+
 ### 1. Defina os eixos
 Leia o brief. Escolha **2-3 direções distintas e nomeadas** — não 12 imagens aleatórias. Ex.: "Editorial sóbrio", "Pop saturado", "Orgânico artesanal". Direções que se parecem não são direções.
 

@@ -9,6 +9,9 @@ Objetivo: um arquivo que todo agente lê para não precisar perguntar de novo �
 
 ## Passos
 
+### 0. Pergunte onde as guidelines nascem
+Link do arquivo Figma, pelo usuário, nesta sessão. Rode `/figma-destino` e registre. Arquivo de referência que você leu para extrair paleta não vira arquivo de destino por tabela.
+
 ### 1. Reúna o que já existe
 Varra `assets/` (logos, artes antigas), peças anteriores em `outputs/`, e o que o usuário fornecer. Se houver arquivo Figma de referência, extraia com `get_variable_defs` e `get_design_context` — cores e tipografia reais valem mais que descrição de memória.
 

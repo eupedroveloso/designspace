@@ -33,11 +33,37 @@ Verifique ambas com `/figma-status`.
 
 ---
 
+## Destino no Figma — regra dura
+
+**Sempre perguntar em qual arquivo do Figma a peça deve ser criada, antes de criar qualquer coisa.** Vale para criativo, tela, componente, moodboard, guidelines, diagrama — qualquer coisa que vire nó no Figma. Sem exceção, em toda sessão.
+
+A pergunta é a primeira da tarefa, não a última antes de montar:
+
+> **Em qual arquivo do Figma eu crio essa peça?** Me manda o link. Se tiver página e seção específicas, me diz também.
+
+Depois de responder, registre — é o que libera a trava:
+
+```bash
+.claude/hooks/figma-destino.sh set "<link>" --pagina "<página>" --secao "<seção>"
+```
+
+**Só a resposta do usuário nesta sessão conta.** Link de conversa anterior, file key da memória ou do `outputs/`, arquivo citado aqui no `CLAUDE.md` e arquivo por acaso aberto no desktop **não são autorização** — são atalho de leitura. Oferecer o arquivo da última entrega como opção é bom; assumir que ele continua valendo é o erro.
+
+Um hook `PreToolUse` bloqueia `use_figma`, `create_new_file`, `figma_execute` e as demais tools de escrita enquanto não houver destino registrado, e o registro é apagado a cada sessão nova. Leitura — `get_screenshot`, `get_design_context`, `whoami`, `/figma-status` — continua livre. Se o bloqueio aparecer, ele está certo: pare, pergunte, registre, repita a chamada. Não contorne por outra tool nem crie arquivo novo para destravar.
+
+`use_figma` e `figma_execute` escrevem **no arquivo em foco no Figma desktop**, não no link registrado. Confirme que os dois batem antes da primeira escrita.
+
+Ritual completo, incluindo o que fazer quando o usuário não sabe onde quer: `/figma-destino`.
+
+---
+
 ## Fluxo obrigatório de criação de anúncio
 
 Nesta ordem, sem pular etapa:
 
-0. **Perguntar para qual produto é a criação.** Lista o que existe em `produtos/`. Se o produto não existir, rode `/briefing-produto` para criá-lo.
+0. **Perguntar duas coisas, antes de tudo:**
+   - **Para qual produto é a criação.** Lista o que existe em `produtos/`. Se o produto não existir, rode `/briefing-produto` para criá-lo.
+   - **Em qual arquivo do Figma a peça vai nascer.** Link, página e seção. Rode `/figma-destino` — a pergunta vem antes de gastar crédito de imagem, não na hora de montar.
 1. **`/briefing-produto`** — extrai da landing page (URL) e/ou do Figma: nome, promessa, formato, datas, preço, como funciona, entregáveis, garantia, público, autoridade, prova, CTA, **nicho**, **paleta**, **tipografia** e **logo em SVG**. Salva em `produtos/<slug>/`. Confirmar as lacunas com o usuário antes de seguir.
 2. **Pesquisar o nicho** — busca web e Pinterest por *flyer, banner, post, ads, identidade visual* daquele mercado. Extrair paleta praticada, tipografia, estética fotográfica e elementos recorrentes.
 3. **Rodar `/copy-anuncio`** — toda copy sai da skill (metodologia VTSD, Mandala de 18 Tipos). Nunca escrever copy no olho.
@@ -136,6 +162,7 @@ Proibido: objeto solitário representando ideia abstrata, escala impossível usa
 ## Regras de ouro
 
 0. **Rode `/figma-status` antes da primeira operação de Figma em cada sessão** — e sempre que uma chamada do Figma falhar. Confirma as três camadas: conector MCP (OAuth), token REST e plugin Desktop Bridge.
+0.1. **Pergunte o link do arquivo de destino antes de criar qualquer coisa no Figma, sempre.** `/figma-destino`. Só a resposta do usuário nesta sessão vale — link antigo, memória e arquivo aberto no desktop não autorizam nada. Ver a regra dura acima.
 1. **Antes de `use_figma`, carregue `/figma-use`.** Não é opcional — pular causa falhas difíceis de debugar. O mesmo vale para `create_new_file` (`/figma-create-new-file`), `generate_diagram` (`/figma-generate-diagram`) e `get_design_context` (`/figma-design-to-code`).
 2. **Nunca invente identificadores do Magnific.** UUIDs, `identifier` e referências de pasta são para a próxima chamada de tool, não para o usuário. Ao falar com o usuário use nome, título e `webUrl`.
 3. **Encadeamento imagem → Figma** usa o `identifier` da creation (ou a `url` de `creations_get`/`creations_wait`), **nunca** a `webUrl`.
@@ -187,6 +214,8 @@ DesignSpace/
 └── .claude/
     ├── agents/   # Agentes especializados
     ├── skills/   # Fluxos repetíveis
+    ├── hooks/    # figma-destino.sh — a trava do destino no Figma
+    ├── state/    # Destino ativo da sessão. Gitignored, apagado a cada sessão nova
     └── settings.json
 ```
 
@@ -213,6 +242,7 @@ Lance agentes em paralelo quando os trabalhos forem independentes (ex.: gerar 3 
 | Skill | Fluxo |
 |---|---|
 | `/figma-status` | Check das 3 camadas de conexão com o Figma. Rode antes de tocar em qualquer arquivo. |
+| `/figma-destino` | **Pergunta e registra em qual arquivo a peça nasce.** Obrigatória antes de qualquer criação no Figma, em toda sessão. Um hook bloqueia a escrita até o destino estar registrado. |
 | `/briefing-produto` | **Etapa 0 de tudo.** Extrai o briefing completo de uma LP ou do Figma — incluindo nicho, paleta, tipografia e logo em SVG. Salva em `produtos/<slug>/`. |
 | `/anuncio-spp` | **Sistema de anúncios "Seu Produto Pronto com IA"** — grid, tokens, componentes, efeitos e relação copy↔cena, engenheirados dos 16 originais. Use para qualquer criativo dessa marca. |
 | `/ref-ads-dna` | **DNA visual do board "Ref Ads"** (196 peças catalogadas). 12 categorias de abordagem criativa mais as regras transversais de luz, paleta, textura e formato. Complemento de estilo: roda antes de gerar imagem ou desenhar a cena, e não monta a peça sozinha. |

@@ -9,6 +9,9 @@ Objetivo: tela que o time consegue editar e evoluir — componentes do DS, token
 
 ## Passos
 
+### 0. Pergunte onde a tela nasce
+Link do arquivo Figma, página e seção — pelo usuário, nesta sessão. Rode `/figma-destino` e registre antes de qualquer coisa. Um hook bloqueia a escrita enquanto não houver destino.
+
 ### 1. Carregue as skills do Figma
 `/figma-use` **sempre**, junto com `/figma-generate-design` (tela composta) ou `/figma-generate-library` (se precisar criar componentes que ainda não existem). Sem isso, `use_figma` falha de forma difícil de debugar.
 

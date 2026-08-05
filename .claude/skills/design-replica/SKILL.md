@@ -11,6 +11,12 @@ Objetivo: sair de uma imagem de referência para um arquivo Figma editável que,
 
 ---
 
+## 0. Onde a réplica nasce
+
+Pergunte ao usuário o link do arquivo Figma de destino — com página e seção, se ele souber — e registre com `/figma-destino`. Vale mesmo quando o original está no Figma: **o arquivo que você lê para medir não é, por padrão, o arquivo onde você escreve.** Um hook bloqueia a escrita enquanto não houver destino registrado.
+
+---
+
 ## 1. Medir antes de qualquer coisa
 
 Trabalhe sobre o arquivo real da imagem, não sobre a impressão visual dela.

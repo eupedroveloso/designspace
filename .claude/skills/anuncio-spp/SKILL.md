@@ -88,7 +88,9 @@ Detalhe completo e os 5 arquétipos em `references/anatomia.md`.
 
 ## Ordem de construção
 
-Sempre de trás para frente. Cada camada existe por um motivo funcional.
+**0. O destino, antes da primeira camada.** Pergunte ao usuário em qual arquivo Figma o anúncio nasce — link, página e seção — e registre com `/figma-destino`. Nem o arquivo `Seu Produto Pronto` nem a página de testes valem por padrão: a peça de hoje pode ir para outro lugar, e quem decide é ele. Um hook bloqueia a escrita enquanto não houver destino registrado nesta sessão.
+
+Daí em diante, sempre de trás para frente. Cada camada existe por um motivo funcional.
 
 **1. Fundo com escurecimento embutido.** O fill do frame já carrega a pilha:
 ```

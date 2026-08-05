@@ -47,6 +47,16 @@ Sintoma típico: camadas 1 e 2 passam, `use_figma` trava ou dá timeout. Isso é
 
 Após 2-3 falhas, **pare**. Reporte qual camada passou e qual falhou, e o que checar. Não repita a mesma chamada em loop.
 
+## 4. Destino registrado
+
+Conexão em pé não diz **onde** escrever. Antes de criar qualquer coisa:
+
+```bash
+.claude/hooks/figma-destino.sh show
+```
+
+Sem registro, um hook bloqueia toda tool de escrita — e o certo é justamente isso: pergunte o link ao usuário e registre com `/figma-destino`. Leitura não depende disso; as três camadas acima se checam sem destino nenhum.
+
 ## Saída
 
 Uma linha por camada. Ex.:
@@ -55,4 +65,5 @@ Uma linha por camada. Ex.:
 MCP OAuth ✅ Pedro Veloso / Ready To Go (Full, pro)
 REST      ✅ HTTP 200 — mesma conta
 Bridge    ⚠️  não verificável — confirmar desktop + plugin antes de use_figma
+Destino   ❌ não registrado — perguntar o link ao usuário (/figma-destino)
 ```
