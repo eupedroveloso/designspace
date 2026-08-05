@@ -1,0 +1,6 @@
+.env
+.env.*
+!.env.example
+.DS_Store
+assets/*
+!assets/README.md
