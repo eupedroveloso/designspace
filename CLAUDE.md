@@ -57,26 +57,67 @@ Ritual completo, incluindo o que fazer quando o usuário não sabe onde quer: `/
 
 ---
 
+## Idioma e acentuação (regra global)
+
+Toda comunicação com o usuário e todo texto que o lead vê é **português do Brasil com acentuação correta**. Vale para a fala no chat, a copy da peça, o briefing, o brief e o registro em `outputs/`.
+
+**Palavras que nunca aparecem sem acento em texto corrido:** não, são, você, está, já, também, três, público, lógico, estratégia, dúvida, método, prática, análise, específico, básico, único, número, código, página, vídeo, área, história, memória, técnica, próximo, último, crítico, fácil, difícil, possível, impossível, automático, índice, início, sessão, decisão, opção, função, ação, reação, situação, solução.
+
+Leve o contexto em conta: `publica` (verbo) e `pública` (adjetivo) são palavras diferentes.
+
+**Onde a regra não se aplica**, e continua em ASCII ou em inglês:
+
+- Slug de produto, nome de arquivo e nome de camada do Figma (`seu-produto-pronto-com-ia`, `cta-botao`)
+- Chave de JSON, variável e código JS do `use_figma`
+- **Prompt de imagem do Magnific, que é escrito em inglês** por decisão de qualidade do modelo
+
+**A exceção mais perigosa é o texto dentro da cena.** Quando a imagem carrega texto de um objeto (tela de celular, capa, placa, embalagem, jornal), ele é renderizado pelo modelo em PT-BR e o modelo erra acento com frequência. Depois de gerar, confira **letra por letra** antes de montar. Peça com erro de português na imagem não vai para tráfego, e o conserto é regerar, nunca aceitar.
+
+---
+
+## Produto ativo
+
+`produtos/.ativo` guarda o slug do produto corrente, numa linha só. **Leia esse arquivo antes de perguntar qualquer coisa ao usuário** e use `produtos/{ativo}/` como caminho base de briefing, identidade e criativos.
+
+Ordem, no começo de toda tarefa de copy ou criativo:
+
+1. Ler `produtos/.ativo`
+2. Ler `produtos/{ativo}/briefing.md` e o que houver em `produtos/{ativo}/identidade/`
+3. Confirmar com o usuário em **uma linha**, já com o ativo como padrão: "Vou seguir no *Seu Produto Pronto com IA*. Se for outro, me diz agora."
+
+Isso **não substitui a pergunta do destino no Figma**, que é independente e continua obrigatória. Produto ativo diz de quem é a peça; destino diz onde ela nasce.
+
+Se o `.ativo` não existir, apontar para pasta inexistente ou o briefing estiver faltando, o caminho é `/briefing-produto`. Nunca inventar contexto de produto, nunca reconstruir promessa, preço ou público de memória.
+
+Trocar de produto é reescrever a linha do `.ativo`. Quando o usuário pedir uma peça para outro produto, atualize o arquivo em vez de carregar o contexto errado pelo resto da sessão.
+
+---
+
 ## Fluxo obrigatório de criação de anúncio
 
 Nesta ordem, sem pular etapa:
 
 0. **Perguntar duas coisas, antes de tudo:**
-   - **Para qual produto é a criação.** Lista o que existe em `produtos/`. Se o produto não existir, rode `/briefing-produto` para criá-lo.
+   - **Para qual produto é a criação.** Ler `produtos/.ativo` e o `briefing.md` dele, e confirmar em uma linha com o ativo como padrão. Se o produto não existir, rode `/briefing-produto` para criá-lo.
    - **Em qual arquivo do Figma a peça vai nascer.** Link, página e seção. Rode `/figma-destino` — a pergunta vem antes de gastar crédito de imagem, não na hora de montar.
 1. **`/briefing-produto`** — extrai da landing page (URL) e/ou do Figma: nome, promessa, formato, datas, preço, como funciona, entregáveis, garantia, público, autoridade, prova, CTA, **nicho**, **paleta**, **tipografia** e **logo em SVG**. Salva em `produtos/<slug>/`. Confirmar as lacunas com o usuário antes de seguir.
 2. **Pesquisar o nicho** — busca web e Pinterest por *flyer, banner, post, ads, identidade visual* daquele mercado. Extrair paleta praticada, tipografia, estética fotográfica e elementos recorrentes.
-3. **Rodar `/copy-anuncio`** — toda copy sai da skill (metodologia VTSD, Mandala de 18 Tipos). Nunca escrever copy no olho.
+3. **Rodar `/copy-anuncio`** — toda copy sai da skill (metodologia VTSD, Mandala de 18 Tipos). Nunca escrever copy no olho. **A copy passa pela `revisora` antes de aparecer na tela**, em silêncio. Ver a regra de ouro 5.1.1.
 4. **Carregar `/ref-ads-dna`** — o DNA visual do board de referências do usuário. Escolher a categoria (A–L) que serve o objetivo da campanha e puxar o DNA transversal: direção da luz, paleta de 2-3 cores, textura do assunto principal, formato vertical e zona de respiro para o texto. Daqui sai a **cena e o tratamento fotográfico** — nunca um layout pronto. A escolha da categoria passa antes pela regra de leitura imediata abaixo: o DNA define o acabamento, e a legibilidade define a cena.
-5. **Desenhar layout original a partir da cena.** Ver a regra de originalidade abaixo.
-6. **Conferir contra o benchmark** do cliente e auditar com `analisador-criativo`.
+5. **Se a cena tem o rosto do Leandro Ladeira, carregar `/leandro-ladeira`** antes de escrever o prompt. O rosto dele nunca é gerado de memória: sai das fotos de referência em `assets/leandro-ladeira/`, e a skill traz a direção do personagem.
+6. **Desenhar layout original a partir da cena.** Ver a regra de originalidade abaixo.
+7. **Conferir contra o benchmark** do cliente e auditar com `analisador-criativo` e `revisor-final`.
+8. **Derivar o Story 9:16 com `/ad-set`**, sempre, depois do feed aprovado. Não é opcional e não se pergunta antes. Zonas seguras e regra de tipografia na própria skill.
 
 Estrutura de produto:
 ```
-produtos/<slug>/
-├── briefing.md
-├── identidade/  logo.svg · paleta.md · tipografia.md
-└── criativos/
+produtos/
+├── .ativo                slug do produto corrente
+└── <slug>/
+    ├── briefing.md
+    ├── identidade/       logo.svg · paleta.md · tipografia.md
+    ├── criativos/
+    └── agentes/          memória dos agentes neste produto
 ```
 
 ### Originalidade — regra dura
@@ -176,6 +217,11 @@ O texto da peça se divide em duas trilhas que **nunca se misturam**:
 - **Texto que pertence a um objeto da cena** (tela de tablet ou celular, capa, placa, embalagem, jornal) é **renderizado pelo modelo de imagem, em português do Brasil**, ou simplesmente não existe. Nunca sobreponha texto vetorial a um objeto fotografado para fingir superfície: o Figma não tem perspectiva, textura nem interação de luz para isso ficar real, e o resultado denuncia a peça.
 
 Consequência prática nos prompts: o `no text, no numbers, no readable characters, no logos` continua valendo para tudo, **exceto** quando a cena tem um objeto que precisa carregar texto. Nesse caso descreva exatamente o que a tela ou a capa mostra, em PT-BR, e feche com "no other text anywhere in the picture".
+5.1.1. **Nenhuma copy chega ao usuário sem passar pela `revisora`.** Toda skill e todo agente que produz texto de venda (Head, SubHead, CTA, chapéu, linha de apoio, legenda, gancho, e o texto que vai renderizado dentro da cena) roda a `revisora` como último passo interno, aplica as correções direto no texto e só então mostra o resultado.
+
+Ela é invisível: não se anuncia que rodou, não se entrega lista de problemas, não se pede autorização para corrigir. Quando um alerta depende de dado que só o usuário tem (número de turmas, resultado real, data), pergunte o dado de forma objetiva **sem citar a revisora**, e nunca preencha com número plausível. A `revisora` não chama a si mesma, e não cobre resposta conversacional, brief nem prompt em inglês.
+
+Divisão com o `revisor-final`: a revisora cuida da **frase**, antes de o texto existir na tela; o revisor-final cuida do **pixel**, antes de a peça ir para tráfego. Os dois rodam, em momentos diferentes.
 5.2. **Estilo vem do board, layout vem da cena.** `/ref-ads-dna` decide luz, paleta, textura, categoria e enquadramento da imagem — nunca a sequência de blocos da peça. Repetir o *sotaque* visual do board é o objetivo; repetir o *layout* é o defeito que a regra de originalidade proíbe. A regra de PT-BR daquela skill vale só para texto que faz parte da cena (placa, embalagem, jornal, UI simulada) ou para prompt que o usuário vai colar em outra IA — dentro do DesignSpace o texto continua sendo vetor no Figma, e o prompt de fundo continua terminando com `no text, no numbers, no readable characters, no logos`.
 5.2.1. **Logo só quando pedido.** Não coloque lockup nem marca na peça por hábito. Se o usuário não pediu, a peça sai sem logo.
 5.2.2. **Sombra de texto não é automática.** Meça antes: se o fundo sob o texto já entrega contraste, não existe sombra. Empilhar sombra sobre fundo escuro engorda a letra e suja a contraforma sem ganhar nada. A sombra é exceção para texto que precisa cair sobre região clara ou movimentada.
@@ -206,16 +252,20 @@ Fluxo de custo saudável: explore em `imagen-nano-banana-2-lite` → escolha a d
 
 ```
 DesignSpace/
+├── produtos/     # Um diretório por produto, mais .ativo com o slug do produto corrente
 ├── brand/        # Brand kits por cliente/projeto (paleta, tipografia, tom visual, do/don't)
 ├── briefs/       # Briefs estruturados das tarefas (entrada de todo trabalho)
 ├── assets/       # Inputs locais: fotos, logos, referências enviadas pelo usuário
+│   └── leandro-ladeira/    # Fotos do rosto do expert + identifiers já subidos no Magnific
 ├── outputs/      # Registro de entregas: links Figma, creations, decisões
+├── venv/         # Ambiente Python de analise-composicao.py. Gitignored
 ├── .env          # FIGMA_ACCESS_TOKEN — chmod 600, gitignored, nunca impresso
 └── .claude/
-    ├── agents/   # Agentes especializados
-    ├── skills/   # Fluxos repetíveis
-    ├── hooks/    # figma-destino.sh — a trava do destino no Figma
-    ├── state/    # Destino ativo da sessão. Gitignored, apagado a cada sessão nova
+    ├── agents/          # Agentes especializados
+    ├── agents-memory/   # Memória global dos agentes (a por produto vive em produtos/<slug>/agentes/)
+    ├── skills/          # Fluxos repetíveis
+    ├── hooks/           # figma-destino.sh — a trava do destino no Figma
+    ├── state/           # Destino ativo da sessão. Gitignored, apagado a cada sessão nova
     └── settings.json
 ```
 
@@ -225,13 +275,13 @@ Convenção de nome: `YYYY-MM-DD-cliente-tarefa`. Ex.: `briefs/2026-08-03-acme-l
 
 ## Git — fluxo de branches
 
-`main` é a branch padrão. **Nunca commite direto nela.** Toda alteração nasce na `pedro`, sobe para a `pedro`, e só depois vai para a `main`:
+`main` é a branch padrão. **Nunca commite direto nela.** Toda alteração nasce numa **branch pessoal** (`pedro`, `Gabriel`), sobe para ela, e só depois vai para a `main`:
 
 ```bash
-git add -A && git commit          # sempre na pedro
-git push origin pedro
-git checkout main && git merge --ff-only pedro && git push origin main
-git checkout pedro                # volta, é onde o trabalho acontece
+git add -A && git commit          # sempre na sua branch
+git push origin <sua-branch>
+git checkout main && git merge --ff-only <sua-branch> && git push origin main
+git checkout <sua-branch>         # volta, é onde o trabalho acontece
 ```
 
 O merge é sempre `--ff-only`. Se ele recusar, as duas divergiram — alguém commitou na `main` direto. Pare e avise em vez de forçar.
@@ -252,6 +302,8 @@ Commit e push acontecem **quando o usuário pede**, não a cada alteração.
 
 Lance agentes em paralelo quando os trabalhos forem independentes (ex.: gerar 3 direções visuais distintas).
 
+**Todo agente tem memória, e carrega ela no Passo 0.** Dois níveis: a global em `.claude/agents-memory/<agente>.md`, que vale para qualquer produto, e a do produto ativo em `produtos/{ativo}/agentes/<agente>.md`. Ao terminar, o agente anexa o que aprendeu no nível certo. Convenção, formato da nota e o que nunca pode ser gravado em `.claude/agents-memory/README.md`.
+
 ---
 
 ## Skills
@@ -262,13 +314,15 @@ Lance agentes em paralelo quando os trabalhos forem independentes (ex.: gerar 3 
 | `/figma-destino` | **Pergunta e registra em qual arquivo a peça nasce.** Obrigatória antes de qualquer criação no Figma, em toda sessão. Um hook bloqueia a escrita até o destino estar registrado. |
 | `/briefing-produto` | **Etapa 0 de tudo.** Extrai o briefing completo de uma LP ou do Figma — incluindo nicho, paleta, tipografia e logo em SVG. Salva em `produtos/<slug>/`. |
 | `/anuncio-spp` | **Sistema de anúncios "Seu Produto Pronto com IA"** — grid, tokens, componentes, efeitos e relação copy↔cena, engenheirados dos 16 originais. Use para qualquer criativo dessa marca. |
+| `/leandro-ladeira` | **Rosto do expert.** Gera a imagem com o rosto real dele a partir das fotos em `assets/leandro-ladeira/`, mais a direção visual do personagem (humor, ação concreta, o que é proibido). Nunca gerar o rosto de memória. |
 | `/ref-ads-dna` | **DNA visual do board "Ref Ads"** (196 peças catalogadas). 12 categorias de abordagem criativa mais as regras transversais de luz, paleta, textura e formato. Complemento de estilo: roda antes de gerar imagem ou desenhar a cena, e não monta a peça sozinha. |
 | `/design-replica` | Replicar um design de referência pixel a pixel. **Se o original existir no Figma, leia as propriedades reais em vez de inferir da imagem.** |
 | `/brief` | Pedido solto → brief estruturado em `briefs/`. |
 | `/copy-anuncio` | **Obrigatória para toda copy de anúncio.** Metodologia VTSD, Mandala de 18 Tipos, Manual da Copy e checklist Light Copy. Roda antes do design. |
 | `/copy-card` | Variante enxuta: só Head + Subhead + CTA que vão **dentro** do card, por fase do funil. |
+| `revisora` | **Filtro final e invisível de toda copy.** Roda dentro do pipeline, nunca é chamada pelo usuário. Aplica o Manual da Copy e o checklist Light Copy antes de o texto aparecer na tela. |
 | `/moodboard` | Direção visual → grid de referências no Figma/FigJam. |
-| `/ad-set` | Criativo aprovado → variações por formato/canal. |
+| `/ad-set` | Criativo aprovado → variações por formato/canal. **Deriva o Story 9:16 de todo feed aprovado**, sempre, com as zonas seguras do Instagram medidas. |
 | `/ui-screen` | Descrição de tela → tela montada no Figma com design system. |
 | `/brand-kit` | Consolidar identidade em `brand/` + página de guidelines no Figma. |
 

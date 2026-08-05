@@ -3,5 +3,19 @@
 !.env.example
 .DS_Store
 .claude/state/
+
+# Ambiente Python do analise-composicao.py — recriável com venv + numpy + pillow
+venv/
+__pycache__/
+*.pyc
+
 assets/*
 !assets/README.md
+# Rosto do expert: ativo de marca, viaja com o projeto
+!assets/leandro-ladeira/
+
+# NOTA sobre produtos/*/criativos/
+# 136 artes já estão versionadas no histórico (pack de ~289 MB). Ignorar as novas
+# deixaria o repositório incoerente: antigas rastreadas, novas invisíveis.
+# Enquanto a decisão de tirá-las do índice não for tomada, a convenção segue
+# sendo versionar a arte. Ver a discussão em outputs/.

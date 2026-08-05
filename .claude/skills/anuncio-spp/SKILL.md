@@ -48,7 +48,7 @@ Por isso toda peça carrega **de dois a três objetos do produto digital** no pl
 
 ### Os três invariantes
 
-1. **O mesmo protagonista.** Sempre o mesmo homem, camiseta petróleo/teal. É o rosto da marca.
+1. **O mesmo protagonista.** Sempre o mesmo homem, camiseta petróleo/teal. É o rosto da marca, e é o Leandro Ladeira: **carregue `/leandro-ladeira` antes de gerar qualquer cena com ele.** O rosto sai das fotos de referência em `assets/leandro-ladeira/`, nunca de memória. A camiseta petróleo/teal entra no prompt por decisão de identidade desta marca, não por cópia da foto de referência.
 2. **O asterisco Claude entra na cena como objeto físico.** Peixe, mascote 3D, bloco pixelado, logo em relevo. Nunca como marca d'água aplicada por cima.
 3. **O headline se parte em dois.** Uma parte neutra (branco) e uma parte na cor de acento. A parte colorida carrega a informação que precisa ser lembrada — o número, o prazo, o benefício.
 

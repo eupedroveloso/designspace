@@ -138,8 +138,9 @@ Nada é mostrado antes disso:
 4. Confira os limites de palavra de `anatomia-do-card.md`. Head acima de 9 palavras quebra a hierarquia do design — corte.
 5. Corrija tudo direto no texto. Não entregue lista de problemas nem peça autorização para corrigir.
 6. Se um alerta depender de dado que só o usuário tem (número de alunos, depoimento com resultado real, faturamento), peça esse dado específico antes de entregar a variação afetada.
+7. **Acione a skill `revisora` com o texto completo, como último passo.** Ela roda a checagem de AI slop e a de acentuação pt_BR, que o checklist manual não cobre, e devolve o texto corrigido. É esse texto que vai para a tela.
 
-**Invisibilidade obrigatória:** nunca diga que rodou o checklist. Entregue só a versão final.
+**Invisibilidade obrigatória:** nunca diga que rodou o checklist nem que existe uma revisora. Entregue só a versão final.
 
 ---
 

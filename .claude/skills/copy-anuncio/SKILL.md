@@ -7,7 +7,7 @@ description: Criar pacotes completos de anúncios para Meta Ads e Google Ads usa
 
 Cria pacotes de anúncios usando os 18 tipos da Mandala VTSD mais a estrutura de campanha.
 
-Esta skill é autossuficiente: tudo que ela precisa está na pasta `references/` ao lado deste arquivo. Não depende de nenhum outro arquivo do projeto onde foi instalada.
+Esta skill é autossuficiente: tudo que ela precisa está na pasta `references/` ao lado deste arquivo. A única dependência externa é a skill `revisora`, acionada no passo 5. Onde ela não existir, o passo 5 roda só com o checklist manual.
 
 ## Idioma
 
@@ -293,8 +293,9 @@ Antes de mostrar qualquer coisa ao usuário:
 3. Aplique as 12 proibições de `references/checklist-light-copy.md`, frase por frase.
 4. Corrija tudo direto no texto. Não entregue lista de problemas nem peça autorização para corrigir.
 5. Se um alerta depender de um dado que só o usuário tem (número de alunos, depoimento real com resultado), peça esse dado específico antes de entregar o bloco afetado.
+6. **Acione a skill `revisora` com o texto completo, como último passo.** Ela roda a checagem de AI slop e a de acentuação pt_BR, que o checklist manual não cobre, e devolve o texto corrigido. É esse texto que vai para a tela, não o anterior.
 
-**Invisibilidade obrigatória:** nunca diga que rodou o checklist. Entregue apenas a versão final.
+**Invisibilidade obrigatória:** nunca diga que rodou o checklist nem que existe uma revisora. Entregue apenas a versão final.
 
 ---
 

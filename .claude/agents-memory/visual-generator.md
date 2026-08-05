@@ -1,0 +1,7 @@
+# Memória global — visual-generator
+
+- 2026-08-05 — `images_expand` devolve o resultado em **736 px de largura**, independente da resolução da origem. Para peça de 1080, encadear `images_upscale` em `ultra-photo` 2x depois do expand, senão a imagem chega abaixo do necessário.
+- 2026-08-05 — `images_expand` **alucinou uma interface de app com texto ilegível** quando o prompt do expand descrevia regra em vez de cena: ele renderizou as próprias instruções como screenshot. Descrever só o que aparece na área nova ("parede clara com sol", "sombra vazia"), nunca instrução ou meta-texto.
+- 2026-08-05 — Pedir "assunto nos dois terços de cima, terço de baixo vazio" no prompt **não basta**. Na prática o assunto ocupou até 75 % da altura e sobraram 340 px de faixa livre, insuficientes para headline no piso de tamanho. Peça explicitamente o assunto pequeno no quadro, com distância de câmera declarada (28 mm, "shot from a distance") e a metade ou o terço vazio nomeado como o elemento principal da composição.
+- 2026-08-05 — Referências do Leandro Ladeira (`rgLEksjxtc`, `s7SHjUjl8e`) seguram bem o rosto mesmo com figurino e cenário inventados do zero, e sobrevivem ao upscale sem derivar. Ver [[leandro-ladeira]].
+- 2026-08-05 — Parede lisa com diagonais de sol dá contraste alto mas **desvio de fundo entre 0,10 e 0,21**, acima do limite de homogeneidade de 0,05. Se a peça precisa de fundo calmo para texto, pedir luz difusa naquela área em vez de padrão de sombra.
