@@ -159,6 +159,59 @@ Proibido: objeto solitário representando ideia abstrata, escala impossível usa
 
 **Todo escurecimento usa a matiz dominante da cena, nunca preto neutro ou frio.** Vale para sombra de texto, scrim, fill de barra de vidro e halo. Amostre a média de RGB da região, converta para HSV, guarde a matiz e derive: preto da cena com saturação × 1,35 e valor ≈ 0,055; halo claro com saturação × 0,45 e valor ≈ 0,99. Preto azulado sobre cena âmbar denuncia texto colado por cima. A receita completa está na seção 4 do `efeitos.md`.
 
+### Mancha de texto — regra dura
+
+Acrescentada em 2026-08-25, depois de a subhead sair estreita demais em duas peças seguidas.
+
+**A subhead ocupa a mesma largura da head.** Não é sobre corpo de fonte, é sobre a **largura do bloco de texto**. Head com mancha larga e subhead com mancha curta embaixo deixa a peça desequilibrada, com um degrau visível no lado direito da coluna. As duas manchas terminam aproximadamente na mesma vertical.
+
+**Proibido quebrar linha sem necessidade.** A linha só quebra quando a próxima palavra não cabe na largura da coluna. Quebra decorativa, quebra para "ficar bonitinho" e quebra herdada do jeito que o texto foi escrito no prompt são todas defeito. Se a subhead está quebrando cedo, o problema é a largura da caixa, não o texto.
+
+**Como pedir no prompt de imagem:**
+
+> The supporting paragraph must fill the SAME column width as the headline above it, with its lines running edge to edge of that column. Break a line only when the next word does not fit. Do not break lines early and do not leave a short ragged block under a wide headline.
+
+**Como conferir antes de entregar.** Meça a caixa de cada bloco e compare a largura:
+
+```
+largura da subhead / largura da head  >=  0,90
+```
+
+Abaixo de 0,90 a peça volta. Vale para qualquer bloco de apoio sob um bloco maior, não só head e subhead.
+
+### Produto digital na cena é mockup de verdade — regra dura
+
+Acrescentada em 2026-08-25, depois de uma peça de UGC sair com a tela do notebook em placeholder cinza.
+
+**Quando a cena mostra um produto digital, o produto existe.** Página de vendas, e-book, app, dashboard, curso: a tela mostra um **mockup real e específico**, com layout resolvido, cor, imagem e texto em PT-BR. Barra cinza de placeholder, lorem ipsum, retângulo vazio e "tela genérica de site" estão proibidos.
+
+**O produto pertence a alguém da cena.** Se a peça mostra uma pessoa, o produto na tela é **o produto dela**, coerente com quem ela é e com o cenário. Mulher numa cozinha com caderno de anotações vende algo que combina com aquela cozinha, e a foto de capa da página é a dela. Produto anônimo na tela é a mesma falha da foto genérica de banco de imagem.
+
+**O texto do mockup segue a regra de ouro 5.1:** é renderizado pelo modelo de imagem, em português do Brasil. Nunca sobreponha texto vetorial a uma tela fotografada.
+
+**Como pedir no prompt:** descreva o mockup como uma peça de design de verdade, item por item — foto de capa, headline em PT-BR entre aspas, botão com o texto entre aspas, paleta. Mantenha as strings da tela curtas, para o modelo não errar a grafia enquanto renderiza também o texto do anúncio.
+
+**O que conta como exceção:** elemento gráfico de fundo em peça ilustrada, quando ele é adereço de composição e não o produto sendo mostrado. Silhueta de página num colagem de quadrinho pode ser silhueta. Tela de notebook em primeiro plano numa foto, não.
+
+### A cena do UGC vem da copy — regra dura
+
+Acrescentada em 2026-08-25, depois de duas peças de UGC saírem com foto genérica.
+
+**Foto de pessoa qualquer segurando celular não é UGC, é banco de imagem.** UGC funciona porque a cena parece um momento real de alguém que viveu aquilo que a copy diz. Se a foto podia ilustrar qualquer anúncio de qualquer nicho, ela está errada.
+
+**A cena precisa mostrar o que a copy afirma.** Antes de escrever o prompt, responda: *que momento concreto essa headline descreve, e o que estaria visível nele?* O que aparece no quadro sai daí.
+
+| Copy diz | A cena mostra |
+|---|---|
+| "sai com o lançamento no ar" | a página publicada na tela do notebook, virada para a câmera |
+| "chega sem produto" | o caderno de rascunho de lado, a tela ainda em branco |
+| "monta o anúncio em uma tarde" | o criativo aberto na tela, o celular com o preview do feed |
+| "sem seguidor" | o painel de campanha, não o perfil de rede social |
+
+**Objeto de cena carrega o contexto.** Notebook, tela, caderno, quadro, papel: é o objeto que amarra a foto à promessa. Pessoa sozinha olhando para a câmera, sem nada em volta que diga do que se trata, não passa.
+
+**O texto dentro do objeto segue a regra de ouro 5.1:** ou é renderizado pelo modelo em PT-BR, ou não existe (barras e blocos de placeholder). Nunca texto vetorial fingindo estar na tela.
+
 ## Regras de ouro
 
 0. **Rode `/figma-status` antes da primeira operação de Figma em cada sessão** — e sempre que uma chamada do Figma falhar. Confirma as três camadas: conector MCP (OAuth), token REST e plugin Desktop Bridge.
