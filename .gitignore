@@ -5,3 +5,23 @@
 .claude/state/
 assets/*
 !assets/README.md
+
+# --- Imagem de anuncio nunca sobe para o Git ---
+# Regra do usuario, 2026-08-26. As pecas ficam no disco e no Magnific.
+# O que sobe e copy, registro de composicoes, README e documentacao.
+# Excecao deliberada: .claude/skills/ref-ads-dna/references/images/ (board de
+# referencia, 2,7 MB, material da skill e nao criativo de campanha).
+produtos/**/*.png
+produtos/**/*.jpg
+produtos/**/*.jpeg
+produtos/**/*.webp
+produtos/**/*.gif
+produtos/**/*.mp4
+produtos/**/*.mov
+outputs/**/*.png
+outputs/**/*.jpg
+outputs/**/*.jpeg
+outputs/**/*.webp
+briefs/**/*.png
+briefs/**/*.jpg
+briefs/**/*.jpeg

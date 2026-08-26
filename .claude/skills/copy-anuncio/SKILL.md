@@ -3,6 +3,8 @@ name: copy-anuncio
 description: Criar pacotes completos de anúncios para Meta Ads e Google Ads usando a Mandala de 18 Tipos de Anúncios da metodologia VTSD. Gera 3 variações de copy com gancho, desenvolvimento e CTA calibrados por fase de funil, mais briefing visual para imagem ou vídeo. Use quando o pedido envolver anúncio, criativo de tráfego pago, campanha Meta, Google Ads, gancho de vídeo curto ou legenda de anúncio.
 ---
 
+> **Fonte única do método: a skill `light-copy`.** O pacote Light Copy completo foi instalado em `.claude/skills/light-copy/` em 2026-08-26, e é ele que manda. As `references/` desta pasta são cópias parciais e mais antigas, mantidas só para os links internos desta skill não quebrarem. Em qualquer divergência, vale o `light-copy`.
+
 # Anúncio. Mandala de 18 Tipos (VTSD)
 
 Cria pacotes de anúncios usando os 18 tipos da Mandala VTSD mais a estrutura de campanha.

@@ -3,6 +3,8 @@ name: copy-card
 description: Cria o conteúdo textual que vai dentro do card de design — Head, Subhead e CTA — usando a Mandala de 18 Tipos (metodologia VTSD), calibrado pela fase do funil (Topo, Meio ou Fundo). Use sempre que uma peça precisar de texto: criativo, banner, card de campanha, arte de lançamento, peça de anúncio. Roda antes do visual-generator e do figma-builder.
 ---
 
+> **Fonte única do método: a skill `light-copy`.** O pacote Light Copy completo foi instalado em `.claude/skills/light-copy/` em 2026-08-26, e é ele que manda. As `references/` desta pasta são cópias parciais e mais antigas, mantidas só para os links internos desta skill não quebrarem. Em qualquer divergência, vale o `light-copy`.
+
 # Copy de card
 
 Gera o texto que vai **dentro do design**. Head, Subhead e CTA. Nada de legenda de rede social, nada de anúncio de plataforma.

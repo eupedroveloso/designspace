@@ -9,7 +9,7 @@
 Exportadas todas as peças da seção **`Export`** do Figma e organizadas em pastas por nicho.
 
 - **Origem:** https://www.figma.com/design/npntxOrWtAEi5mRQcwRxl8/Seu-Produto-Pronto?node-id=2713-430 (seção `Export`)
-- **Destino:** `produtos/seu-produto-pronto-com-ia/criativos/ADS/<nicho>/`
+- **Destino:** `produtos/seu-produto-pronto-com-ia/criativos/2026-08-04-ads-por-nicho/<nicho>/{feed,stories}/` *(era `criativos/ADS/<nicho>/` até 2026-08-26)*
 - **Volume:** 132 PNG · 11 nichos · 324 MB
 - **Método:** API REST do Figma, endpoint `/v1/images`, PNG escala 1×. O conector MCP e o plugin bridge não foram usados — render server-side não depende do desktop.
 

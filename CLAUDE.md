@@ -66,18 +66,186 @@ Nesta ordem, sem pular etapa:
    - **Em qual arquivo do Figma a peça vai nascer.** Link, página e seção. Rode `/figma-destino` — a pergunta vem antes de gastar crédito de imagem, não na hora de montar.
 1. **`/briefing-produto`** — extrai da landing page (URL) e/ou do Figma: nome, promessa, formato, datas, preço, como funciona, entregáveis, garantia, público, autoridade, prova, CTA, **nicho**, **paleta**, **tipografia** e **logo em SVG**. Salva em `produtos/<slug>/`. Confirmar as lacunas com o usuário antes de seguir.
 2. **Pesquisar o nicho** — busca web e Pinterest por *flyer, banner, post, ads, identidade visual* daquele mercado. Extrair paleta praticada, tipografia, estética fotográfica e elementos recorrentes.
-3. **Rodar `/copy-anuncio`** — toda copy sai da skill (metodologia VTSD, Mandala de 18 Tipos). Nunca escrever copy no olho.
+3. **Chamar o agente `copywriter-light`** — toda copy sai dele, sempre. Ele carrega a skill `/light-copy`, que é o pacote Light Copy completo (Manual da Copy, 12 proibições, 26 Elementos Literários, Mandala de Anúncios, revisora anti AI slop) e a fonte única do método. Nunca escrever copy no olho, nunca pular o agente.
+3.1. **Validar a copy por medição, antes de gastar um único crédito de imagem.** Regra dura, ver abaixo.
+3.2. **Esperar o usuário aprovar a copy por escrito.** Etapa bloqueante: nenhuma imagem é gerada antes disso. Regra dura, ver abaixo.
+3.3. **Aprovar o plano de composição no agente `auditor-originalidade`.** Cada peça declara estrutura, técnica de ilustração, enquadramento e paleta, e nenhuma combinação se repete no conjunto. Regra dura, ver abaixo.
 4. **Carregar `/ref-ads-dna`** — o DNA visual do board de referências do usuário. Escolher a categoria (A–L) que serve o objetivo da campanha e puxar o DNA transversal: direção da luz, paleta de 2-3 cores, textura do assunto principal, formato vertical e zona de respiro para o texto. Daqui sai a **cena e o tratamento fotográfico** — nunca um layout pronto. A escolha da categoria passa antes pela regra de leitura imediata abaixo: o DNA define o acabamento, e a legibilidade define a cena.
 5. **Desenhar layout original a partir da cena.** Ver a regra de originalidade abaixo.
 6. **Conferir contra o benchmark** do cliente e auditar com `analisador-criativo`.
 
-Estrutura de produto:
+### Organização das pastas de ADs — regra dura
+
+Estrutura fixa e permanente, definida pelo usuário em 2026-08-26. Vale para toda leva de anúncios, sem exceção. **Crie a árvore antes de gerar a primeira peça.**
+
 ```
 produtos/<slug>/
 ├── briefing.md
-├── identidade/  logo.svg · paleta.md · tipografia.md
+├── identidade/                     logo.svg · paleta.md · tipografia.md
 └── criativos/
+    └── <YYYY-MM-DD-tema>/          o conjunto
+        ├── copy-<conjunto>.md      copy aprovada, na raiz do conjunto
+        ├── _registro-composicoes.tsv
+        ├── README.md               opcional, mapa do conjunto
+        ├── <estilo-1>/
+        │   ├── feed/               1080×1350
+        │   └── stories/            1080×1920
+        └── <estilo-2>/
+            ├── feed/
+            └── stories/
 ```
+
+Os quatro níveis, nesta ordem: **produto → conjunto → estilo → formato.**
+
+| Nível | Regra |
+|---|---|
+| **Conjunto** | `YYYY-MM-DD-tema`. A data é a da produção, não a da campanha |
+| **Estilo** | sempre existe, mesmo quando o conjunto tem um estilo só. Nome descritivo, não `linha-B` sozinho |
+| **Formato** | `feed/` e `stories/` sempre, mesmo que uma das duas ainda esteja vazia |
+| **Raiz do conjunto** | só copy, registro de composições e README. Nenhum PNG solto |
+| **Trabalho intermediário** | pasta com prefixo `_`, e nada dentro dela entra na entrega |
+
+Nome de arquivo: `<produto>-<NN>-<slug-da-head>.png`. Ex.: `flp-07-perfil-vazio.png`.
+
+**Peça solta na raiz de `criativos/` é defeito.** Se apareceu uma, ela pertence a algum conjunto: descubra qual e mova, ou crie o conjunto.
+
+**Imagem de anúncio nunca entra no Git.** Regra do usuário, 2026-08-26. O `.gitignore` bloqueia `png`, `jpg`, `webp`, `gif`, `mp4` e `mov` dentro de `produtos/`, `outputs/` e `briefs/`. As peças vivem no disco e no Magnific.
+
+O que sobe de um conjunto é o texto que explica a peça: copy aprovada, `_registro-composicoes.tsv`, README e a árvore de pastas, preservada por um `.gitkeep` em cada `feed/` e `stories/`. Quem clonar o repositório recebe o mapa completo do conjunto e nenhuma imagem.
+
+Única exceção: `.claude/skills/ref-ads-dna/references/images/`, o board de referência de 2,7 MB. É material de skill, não criativo de campanha.
+
+### Copy aprovada pelo usuário antes de qualquer imagem — regra dura
+
+Acrescentada em 2026-08-26, depois de cerca de 6.000 créditos gastos em peças refeitas três vezes porque a imagem saiu antes de a copy estar fechada.
+
+**Nenhuma imagem é gerada antes de o usuário aprovar a copy por escrito.** É etapa bloqueante, não recomendação. Vale para peça única, lote, teste de estilo, piloto e regeração.
+
+A sequência, sem atalho:
+
+| Ordem | O que acontece | Quem libera |
+|---|---|---|
+| 1 | A copy sai do agente `copywriter-light`, pela skill `/light-copy` | o agente |
+| 2 | O validador roda e sai com código 0 | `validar-copy.py` |
+| 3 | A copy é **apresentada ao usuário** e o trabalho **para** | — |
+| 4 | O usuário responde aprovando | **só o usuário** |
+| 5 | Aí sim gera imagem | — |
+
+**O que não conta como aprovação:**
+
+- Apresentar a copy e começar a gerar na mesma passada
+- Silêncio, ou o usuário responder sobre outro assunto
+- Aprovação de um lote anterior, ou de outra versão da mesma copy
+- O usuário ter pedido "faz os 30 anúncios" no começo da conversa. O pedido autoriza o trabalho, não pula a conferência da copy
+- Aprovação de piloto valendo para o lote inteiro. Piloto aprovado libera o piloto
+
+**Quando a copy muda depois de aprovada, a aprovação cai.** Head reescrita, CTA trocado, eixo novo, público novo: volta para o passo 3. Aprovação é da versão, não do arquivo.
+
+**Como apresentar, para o usuário conseguir aprovar rápido:** a copy inteira em texto, a saída do validador, e uma pergunta fechada. Nada de "posso seguir?" no meio de um relatório de dez parágrafos.
+
+**Se o usuário disser para pular esta etapa**, ele pode. É a verba dele. Registre que foi decisão dele e siga.
+
+### Validar a copy antes de gerar imagem — regra dura
+
+Acrescentada em 2026-08-26, depois de gerar 40 peças com copy que voltou.
+
+**Nenhuma imagem é gerada antes de a copy passar no validador.** Crédito gasto em peça com copy errada não volta.
+
+```bash
+python3 .claude/skills/anuncio-flp/scripts/validar-copy.py <arquivo-de-copy.md>
+```
+
+O script mede, por anúncio, e reprova com código de saída 1:
+
+| O que mede | Limite |
+|---|---|
+| **Volume de texto** | HEAD até 58 caracteres, SUBHEAD até 165, soma até 210 |
+| **Repetição entre ADs** | HEADs com 62% ou mais de similaridade reprovam |
+| **Frase reaproveitada** | sequência de 4 palavras repetida em 3 ou mais anúncios vira alerta |
+| **Entrega da mensagem** | SUBHEAD que não diz o que a pessoa ganha reprova |
+| **Vícios de Light Copy** | travessão, exclamação, HEAD em forma de pergunta, emoji |
+| **CTA** | precisa bater com a forma exata da campanha |
+
+Os limites saem da peça de 1080 de largura: HEAD roda em display condensado de 88 a 120 px, o que dá cerca de 22 caracteres por linha com teto de três linhas; SUBHEAD roda de 46 a 56 px, cerca de 50 caracteres por linha, mesmo teto. Texto acima disso não é escolha estética, é peça que o lead não lê no feed.
+
+**Saiu 1, não gere.** Corrija a copy, rode de novo, e só então gaste crédito.
+
+### Tom da imagem e da copy — regra dura
+
+Acrescentada em 2026-08-26, depois de três peças reprovadas de uma vez.
+
+**Toda peça comunica algo positivo, construtivo e bem-humorado.** Nada pode parecer enganação, golpe, esquema de enriquecimento rápido ou promessa furada. Vale igualmente para a imagem e para a copy.
+
+**Metáforas proibidas, sem exceção:**
+
+| Proibido | Por quê |
+|---|---|
+| Pessoas entrando em máquina, moedor, esteira, funil ou triturador | desumaniza o público, e o público é o cliente |
+| Maço de dinheiro sendo contado na mão | cara de esquema, não de negócio |
+| Cofre transbordando, mala de dinheiro, chuva de cédulas, pilha de notas | linguagem de golpe financeiro |
+| Cédula estrangeira, dólar | o público é brasileiro, e dólar reforça a estética de esquema |
+| Cassino, roleta, dado, bilhete premiado | vender negócio como aposta |
+| Tom noir, sombrio, ameaçador, terror, tensão | o produto é sobre construir, não sobre medo |
+| Pessoa isolada e derrotada como metade "errada" de uma comparação | humilha quem a peça quer converter |
+
+**O que colocar no lugar.** A referência é o próprio anúncio real do cliente, em que os dois aparecem numa oficina, sorrindo, com um laptop na bancada: gente construindo alguma coisa, com bom humor e leveza.
+
+- Construção e oficina: bancada, ferramenta, marcenaria, algo sendo montado a quatro mãos
+- Conquista cotidiana e comemoração simples, sem ostentação
+- Objeto do dia a dia numa situação absurda porém gentil, que é onde mora o humor da charge
+- Sala cheia e animada, fila alegre na porta de um evento, plateia que ri
+- Crescimento como broto, planta, construção que sobe, mapa sendo desenhado
+
+**Como representar faturamento sem parecer golpe.** Nunca pela imagem do dinheiro em si. Use o efeito dele: a agenda que enche, a sala que lota, o negócio que fica pronto, o produto que sai da bancada, a comemoração de quem conseguiu. Se precisar de um símbolo de venda, prefira o comprovante discreto, a notificação no celular ou o aperto de mão.
+
+**Na charge, o humor é gentil.** O absurdo é da situação, nunca à custa de uma pessoa. Ninguém é ridicularizado, ninguém é vítima, ninguém apanha.
+
+### Mudança de proporção — regra dura
+
+Acrescentada em 2026-08-26. **Nunca estique, replique ou espelhe pixel de borda para mudar a proporção de uma peça.** Isso produz listras visíveis na lateral e denuncia a montagem.
+
+Espaço novo se preenche com **preenchimento generativo por IA**, sempre:
+
+```
+images_expand(creationIdentifier, aspectRatio, prompt)
+```
+
+Proporções que a tool aceita: `1:1`, `16:9`, `9:16`, `4:3`, `3:4`, `3:2`, `2:3`, `21:9`. Ela **não** aceita 4:5.
+
+| Destino | Caminho |
+|---|---|
+| **Feed 1080×1350 (4:5)** | gere em `3:4`, expanda para `1:1` com IA, recorte as laterais até 4:5. O conteúdo original fica inteiro e as bordas novas são geradas. |
+| **Stories 1080×1920 (9:16)** | **use a peça de Feed como base e expanda para `9:16`.** Não gere a arte de novo do zero: sai mais barato, e o par Feed/Stories fica visualmente idêntico, que é o que a campanha precisa. |
+
+No `prompt` do expand, descreva a continuação da cena, não a peça inteira. Exemplo: "continuação do papel creme com a mesma textura de jornal" ou "continuação da parede da sala, mesma luz".
+
+`images_crop` corta sem gerar pixel, e serve para o ajuste fino depois do expand. Esticar em software de imagem está proibido.
+
+### Estrutura e técnica nunca se repetem — regra dura
+
+Acrescentada em 2026-08-26, depois de um lote inteiro de 20 anúncios voltar por ter a mesma composição.
+
+**Trocar conteúdo não é trocar composição.** Cena diferente, copy diferente e cor de fundo diferente **não** compensam estrutura idêntica. Foi exatamente esse o erro: 20 peças com a mesma divisão horizontal, a mesma ordem de blocos e a mesma técnica.
+
+Toda peça declara quatro atributos, e nenhuma combinação se repete no conjunto:
+
+| Atributo | O que varia |
+|---|---|
+| **Estrutura** | onde o texto vive e como o quadro se divide. Vinte opções listadas em `/anuncio-flp` |
+| **Técnica de ilustração** | charge, HQ, caricatura 3D, flyer, pop art, colagem, cartaz vintage, vetorial, fotorrealismo, isométrico |
+| **Enquadramento** | plano médio, close extremo, plano geral, cenital, contra-plongée, escala impossível |
+| **Paleta dominante** | qual cor governa o quadro |
+
+Limites que reprovam o lote:
+
+- duas peças **vizinhas** com a mesma estrutura ou a mesma técnica
+- uma estrutura em mais de **20%** do lote
+- uma técnica em mais de **25%** do lote
+- menos de **seis técnicas distintas** num lote de 12 ou mais
+
+**Uma peça aprovada não é um template.** O que se herda dela é o nível de acabamento, a paleta e o tom. A estrutura e a técnica se reinventam a cada peça.
+
+O agente `auditor-originalidade` aprova o plano antes da geração e audita o lote depois, mantendo `_registro-composicoes.tsv` na pasta do conjunto.
 
 ### Originalidade — regra dura
 
@@ -301,6 +469,8 @@ Commit e push acontecem **quando o usuário pede**, não a cada alteração.
 | `figma-builder` | Construir/editar dentro do Figma: telas, componentes, variantes, artes, tokens. |
 | `brand-guardian` | Auditar uma peça contra o brand kit antes de entregar. |
 | `figma-master` | Construção de alta fidelidade no Figma. Nunca economiza esforço; simples e genérico não é entregável. |
+| `auditor-originalidade` | **Garante que nenhuma peça repita estrutura, técnica ou composição de outra.** Roda antes de gerar (aprovando o plano) e depois (auditando o lote). Obrigatório em qualquer conjunto com mais de uma peça. |
+| `copywriter-light` | **Toda copy do projeto sai daqui.** Carrega a skill `/light-copy` (Manual da Copy, 12 proibições, 26 Elementos Literários, Mandala de Anúncios, revisora). Roda antes de qualquer geração de imagem, e a copy dele ainda precisa do aval do usuário antes de virar pixel. Nunca escreva copy no olho. |
 | `analisador-criativo` | **Pente fino antes da entrega.** Audita copy e design com número medido: nicho, contexto, CTA, volume de texto, legibilidade, contraste, margens, densidade e zonas seguras de Stories/Reels. |
 
 Lance agentes em paralelo quando os trabalhos forem independentes (ex.: gerar 3 direções visuais distintas).
@@ -314,11 +484,13 @@ Lance agentes em paralelo quando os trabalhos forem independentes (ex.: gerar 3 
 | `/figma-status` | Check das 3 camadas de conexão com o Figma. Rode antes de tocar em qualquer arquivo. |
 | `/figma-destino` | **Pergunta e registra em qual arquivo a peça nasce.** Obrigatória antes de qualquer criação no Figma, em toda sessão. Um hook bloqueia a escrita até o destino estar registrado. |
 | `/briefing-produto` | **Etapa 0 de tudo.** Extrai o briefing completo de uma LP ou do Figma — incluindo nicho, paleta, tipografia e logo em SVG. Salva em `produtos/<slug>/`. |
+| `/anuncio-flp` | **Sistema de anúncios "Fórmula de Lançamento Pago"** — tom, vocabulário oficial, frases-âncora, CTA fixo e regras visuais extraídos dos anúncios reais do cliente. Obrigatória para qualquer peça desse produto. |
 | `/anuncio-spp` | **Sistema de anúncios "Seu Produto Pronto com IA"** — grid, tokens, componentes, efeitos e relação copy↔cena, engenheirados dos 16 originais. Use para qualquer criativo dessa marca. |
 | `/ref-ads-dna` | **DNA visual do board "Ref Ads"** (196 peças catalogadas). 12 categorias de abordagem criativa mais as regras transversais de luz, paleta, textura e formato. Complemento de estilo: roda antes de gerar imagem ou desenhar a cena, e não monta a peça sozinha. |
 | `/design-replica` | Replicar um design de referência pixel a pixel. **Se o original existir no Figma, leia as propriedades reais em vez de inferir da imagem.** |
 | `/brief` | Pedido solto → brief estruturado em `briefs/`. |
-| `/copy-anuncio` | **Obrigatória para toda copy de anúncio.** Metodologia VTSD, Mandala de 18 Tipos, Manual da Copy e checklist Light Copy. Roda antes do design. |
+| `/light-copy` | **Fonte única do método de copy.** Pacote Light Copy completo (VTSD): Manual da Copy com 15 princípios e 20 vícios, as 12 proibições absolutas, os 26 Elementos Literários, a Mandala de Anúncios, a revisora anti AI slop e os formatos de página, anúncio, social e roteiro. O agente `copywriter-light` carrega esta skill antes de escrever qualquer palavra. |
+| `/copy-anuncio` | Fluxo legado de pacote de anúncio para Meta e Google. O método vem do `/light-copy`; as `references/` desta skill são cópias antigas. |
 | `/copy-card` | Variante enxuta: só Head + Subhead + CTA que vão **dentro** do card, por fase do funil. |
 | `/moodboard` | Direção visual → grid de referências no Figma/FigJam. |
 | `/ad-set` | Criativo aprovado → variações por formato/canal. |

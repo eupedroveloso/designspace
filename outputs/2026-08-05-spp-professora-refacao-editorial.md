@@ -109,9 +109,11 @@ O jeito confiável: chapa de fundo com **só os nós de TEXT ocultos** (a barra 
 
 ## Entregáveis
 
-- `produtos/seu-produto-pronto-com-ia/criativos/2026-08-05-spp-professora-AD-PROF-A-VERDE-1080x1350.png`
-- `produtos/seu-produto-pronto-com-ia/criativos/2026-08-05-spp-professora-AD-PROF-B-MESA-1080x1350.png`
-- `produtos/seu-produto-pronto-com-ia/criativos/2026-08-05-spp-professora-AD-PROF-C-MONO-1080x1350.png`
+> **Caminhos atualizados em 2026-08-26.** As pastas foram migradas para o padrão `produto/conjunto/estilo/{feed,stories}`. Os caminhos abaixo já refletem a estrutura nova.
+
+- `produtos/seu-produto-pronto-com-ia/criativos/2026-08-05-professora/a-verde/feed/2026-08-05-spp-professora-AD-PROF-A-VERDE-1080x1350.png`
+- `produtos/seu-produto-pronto-com-ia/criativos/2026-08-05-professora/b-mesa/feed/2026-08-05-spp-professora-AD-PROF-B-MESA-1080x1350.png`
+- `produtos/seu-produto-pronto-com-ia/criativos/2026-08-05-professora/c-mono/feed/2026-08-05-spp-professora-AD-PROF-C-MONO-1080x1350.png`
 - Cena nova em `assets/cena-professora-mesa-janela.png`
 
 ## Pendência no arquivo

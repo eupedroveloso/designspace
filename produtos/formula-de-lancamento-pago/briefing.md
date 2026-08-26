@@ -8,6 +8,10 @@
 
 ---
 
+## Linha de copy dos anúncios, atualizada em 2026-08-26
+
+**Não falar de "evento pago" nem "lançamento pago" de forma direta nos anúncios.** A promessa é **"Como começar um negócio digital do zero"**, com três dias de implementação e a ajuda de várias Inteligências Artificiais. Detalhes e vocabulário na skill `/anuncio-flp`.
+
 ## Promessa
 
 **"Como começar um negócio digital do zero."**

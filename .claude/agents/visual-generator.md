@@ -55,3 +55,102 @@ E antes dele, sempre a luz declarada: qual é a fonte principal, de que direçã
 - Para encadear em vídeo ou no Figma, passe o `identifier` da creation — nunca a `webUrl`.
 
 Se uma geração falhar duas vezes seguidas, pare e reporte. Não fique queimando crédito.
+
+## Mudança de proporção — regra dura
+
+**Nunca estique, replique ou espelhe pixel de borda para mudar a proporção de uma peça.** Isso cria listras visíveis na lateral e denuncia a montagem. Redimensionamento proporcional puro é permitido; qualquer criação de área nova, não.
+
+Espaço novo se preenche com **preenchimento generativo por IA**:
+
+```
+images_expand(creationIdentifier, aspectRatio, prompt)
+```
+
+Aceita `1:1`, `16:9`, `9:16`, `4:3`, `3:4`, `3:2`, `2:3`, `21:9`. **Não aceita 4:5.**
+
+| Destino | Caminho |
+|---|---|
+| **Feed 1080×1350 (4:5)** | gere em `3:4`, expanda para `1:1` com IA, recorte as laterais até 4:5 |
+| **Stories 1080×1920 (9:16)** | **parta da peça de Feed pronta e expanda para `9:16`.** Nunca regere a arte do zero: custa 50 em vez de 90, e o par Feed/Stories fica idêntico, que é o que a campanha precisa |
+
+No `prompt` do expand descreva só a continuação da cena, não a peça inteira. `images_crop` faz o ajuste fino depois, sem gerar pixel.
+
+Se `images_expand` estiver indisponível, **entregue a peça na proporção nativa em que ela foi gerada** e avise o usuário. Nunca resolva esticando a borda.
+
+### Tom da imagem e da copy — regra dura
+
+Acrescentada em 2026-08-26, depois de três peças reprovadas de uma vez.
+
+**Toda peça comunica algo positivo, construtivo e bem-humorado.** Nada pode parecer enganação, golpe, esquema de enriquecimento rápido ou promessa furada. Vale igualmente para a imagem e para a copy.
+
+**Metáforas proibidas, sem exceção:**
+
+| Proibido | Por quê |
+|---|---|
+| Pessoas entrando em máquina, moedor, esteira, funil ou triturador | desumaniza o público, e o público é o cliente |
+| Maço de dinheiro sendo contado na mão | cara de esquema, não de negócio |
+| Cofre transbordando, mala de dinheiro, chuva de cédulas, pilha de notas | linguagem de golpe financeiro |
+| Cédula estrangeira, dólar | o público é brasileiro, e dólar reforça a estética de esquema |
+| Cassino, roleta, dado, bilhete premiado | vender negócio como aposta |
+| Tom noir, sombrio, ameaçador, terror, tensão | o produto é sobre construir, não sobre medo |
+| Pessoa isolada e derrotada como metade "errada" de uma comparação | humilha quem a peça quer converter |
+
+**O que colocar no lugar.** A referência é o próprio anúncio real do cliente, em que os dois aparecem numa oficina, sorrindo, com um laptop na bancada: gente construindo alguma coisa, com bom humor e leveza.
+
+- Construção e oficina: bancada, ferramenta, marcenaria, algo sendo montado a quatro mãos
+- Conquista cotidiana e comemoração simples, sem ostentação
+- Objeto do dia a dia numa situação absurda porém gentil, que é onde mora o humor da charge
+- Sala cheia e animada, fila alegre na porta de um evento, plateia que ri
+- Crescimento como broto, planta, construção que sobe, mapa sendo desenhado
+
+**Como representar faturamento sem parecer golpe.** Nunca pela imagem do dinheiro em si. Use o efeito dele: a agenda que enche, a sala que lota, o negócio que fica pronto, o produto que sai da bancada, a comemoração de quem conseguiu. Se precisar de um símbolo de venda, prefira o comprovante discreto, a notificação no celular ou o aperto de mão.
+
+**Na charge, o humor é gentil.** O absurdo é da situação, nunca à custa de uma pessoa. Ninguém é ridicularizado, ninguém é vítima, ninguém apanha.
+
+## Direção de arte dos criativos — regra dura
+
+Atualizada em 2026-08-26, depois da peça da oficina ser reprovada.
+
+### Estilo
+
+**Pop art / HQ com meio-tom, em cor vibrante e acabamento limpo.** Contorno preto firme, halftone visível, fundo saturado em vermelho-laranja com raios ou padrão gráfico, elementos de apoio desenhados em laranja e amarelo.
+
+**Proibido o traço de aquarela solta e nanquim gentil.** Ele infantiliza a peça. O registro é neutro e adulto, com humor, não fofo.
+
+### Tom
+
+**Humor nonsense**, contido e adulto. O absurdo está na situação, nunca em fazer a peça parecer desenho infantil.
+
+### Rostos — nunca repetir
+
+**Nenhum rosto se repete dentro da mesma peça.** Quando houver figurantes além dos dois mentores, eles precisam ser visivelmente distintos: idade, tipo de cabelo, barba, tom de pele, formato de rosto. O erro cometido foi um figurante desenhado com o mesmo cabelo ondulado e a mesma barba de um dos mentores, o que fez parecer a mesma pessoa duas vezes no quadro.
+
+### Produto é digital, sempre
+
+**Nunca represente o produto como objeto físico.** Marcenaria, artesanato, bancada com ferramenta, peça de madeira e afins estão proibidos: o aluno não sai com um objeto, sai com um negócio digital.
+
+Represente sempre com o vocabulário visual de produto digital:
+
+| Use | Exemplos |
+|---|---|
+| **Notebook e tela** | notebook aberto com uma landing page real na tela, com headline visível |
+| **Mockup de página** | janela de navegador desenhada, com cabeçalho, bloco de headline, botão de compra |
+| **Dashboard** | gráfico de vendas subindo, painel de números |
+| **Celular** | tela de checkout, notificação de venda, área de membros |
+| **Elementos gráficos** | etiqueta de preço, seta ascendente, cursor, ícone de play, barra de progresso |
+
+Quando a cena precisar mostrar "o que a pessoa construiu", mostre **telas**, não objetos.
+
+## Estrutura — nunca repetir, regra dura
+
+**Não existe template.** Uma peça aprovada mostra o acabamento que a campanha quer, nunca uma fôrma para repetir.
+
+Herda-se o sistema: linguagem gráfica, paleta, tipografia, vocabulário visual e tom. **Muda-se a estrutura em toda peça**: onde o texto vive, como a arte é recortada, a proporção entre as zonas, o eixo da divisão.
+
+Erro cometido em 2026-08-26: 20 anúncios gerados com a mesma divisão horizontal e a mesma ordem de blocos. Cena e copy diferentes não compensam estrutura idêntica.
+
+**Dois eixos variam, não um.** A **estrutura** (onde o texto vive, como a arte é recortada) e a **técnica de ilustração** (charge, HQ, caricatura 3D, flyer, pop art, colagem, cartaz vintage, vetorial, fotorrealismo, isométrico).
+
+Travar a campanha numa única técnica é o mesmo defeito que travar numa única estrutura. Num lote de 20, use ao menos seis técnicas distintas e nunca repita técnica em peças vizinhas.
+
+Antes de gerar, consulte as listas em `.claude/skills/anuncio-flp/SKILL.md`, escolha uma estrutura e uma técnica ainda não usadas no conjunto, e registre quais foram.

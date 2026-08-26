@@ -20,7 +20,14 @@ Estão na landing page do evento:
 | `avatar-erico.a01dabf6.jpg` | avatar recortado |
 | `avatar-ladeira.75bebcb0.jpg` | avatar recortado |
 
-**Atenção:** os nomes dos arquivos parecem trocados em relação a quem é quem na foto. Enquanto isso não estiver confirmado com o usuário, **não rotule ninguém pelo nome dentro da arte**. Usar os dois rostos sem legenda elimina o risco de errar a identificação de uma pessoa real.
+**Resolvido em 2026-08-26.** O `alt` da landing page confirma o pareamento e os anúncios reais do cliente nomeiam os dois com etiqueta sobre a foto. A cautela de não rotular está **revogada**.
+
+| Quem | Como reconhecer |
+|---|---|
+| **Erico Rocha** | cabelo curto liso castanho-escuro, barba por fazer, camiseta preta |
+| **Leandro Ladeira** | cabelo ondulado volumoso, barba cheia, polo azul-marinho |
+
+Os nomes podem e devem aparecer na copy e como etiqueta na arte, do jeito que o cliente já faz.
 
 ## Como pedir no prompt
 
