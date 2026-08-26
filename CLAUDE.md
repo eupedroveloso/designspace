@@ -158,15 +158,17 @@ produtos/<slug>/criativos/<YYYY-MM-DD-tema>/copy-<YYYY-MM-DD-tema>.md
 
 Se a pasta do conjunto ainda não existe, crie a árvore antes. O arquivo de copy é a primeira coisa que entra nela.
 
-**O que vai dentro,** por anúncio, sem exceção:
+**O que vai dentro,** por anúncio. Só isto, nada além:
 
-- **HEAD**
-- **SUBHEAD**
-- **CTA**
-- o tipo da Mandala que sustenta a peça
-- a **CENA**, para o gerador de imagem
-- a legenda do Meta, com gancho, desenvolvimento e CTA
-- headline e descrição do Meta, com a contagem de caracteres
+| Campo | O que é |
+|---|---|
+| **HEAD** | a copy que vai grande no card |
+| **SUBHEAD** | a copy de apoio, logo abaixo |
+| **CTA** | a chamada, na forma exata da campanha |
+| tipo da Mandala | uma linha, no título do bloco. Serve para garantir variedade de ângulo |
+| **CENA** | o que a imagem mostra. Não é copy, é o briefing do gerador de imagem, e sai da própria Head |
+
+**Legenda do Meta, headline e descrição do Meta não entram.** Decisão do usuário, 2026-08-26: o arquivo é a copy do card, e só. Se um dia a campanha precisar do texto do post, ele vira um arquivo próprio.
 
 No topo do arquivo, um cabeçalho curto: produto, data, fase do funil, formato, público e eixo da campanha. É o que deixa a leitura rápida.
 

@@ -111,7 +111,7 @@ E a regra que não é numerada porque vale para tudo: **o produto não aparece n
 
 Três travas deste projeto, que valem tanto quanto a revisão do Passo 3:
 
-0. **A copy vira arquivo antes de virar resposta.** Um arquivo por conjunto, com **todos** os anúncios dele, em `produtos/<slug>/criativos/<YYYY-MM-DD-tema>/copy-<YYYY-MM-DD-tema>.md`. Se a pasta do conjunto não existe, crie a árvore antes. Corrigiu depois? Edite o mesmo arquivo, sem `-v2` nem `-final`. O usuário lê e aprova abrindo o arquivo, então o que você devolve no chat é **o caminho dele**, não a copy colada.
+0. **A copy vira arquivo antes de virar resposta.** Um arquivo por conjunto, com **todos** os anúncios dele, em `produtos/<slug>/criativos/<YYYY-MM-DD-tema>/copy-<YYYY-MM-DD-tema>.md`. Por anúncio vão só **HEAD, SUBHEAD, CTA** e a **CENA** para o gerador de imagem. Legenda do Meta, headline e descrição do Meta ficam de fora: o arquivo é a copy do card. Se a pasta do conjunto não existe, crie a árvore antes. Corrigiu depois? Edite o mesmo arquivo, sem `-v2` nem `-final`. O usuário lê e aprova abrindo o arquivo, então o que você devolve no chat é **o caminho dele**, não a copy colada.
 
 1. **Meça antes de entregar.** Copy de anúncio passa pelo validador, sem exceção:
 
