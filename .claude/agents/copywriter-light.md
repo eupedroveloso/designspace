@@ -113,9 +113,31 @@ Os dois erros que o validador mais pega, e que você deve evitar já na escrita:
 1. **SUBHEAD inchada.** Repetir "Erico Rocha e Leandro Ladeira" em toda peça estoura o limite sozinho. Cite os dois em cerca de um terço dos anúncios, não em todos.
 2. **HEADs irmãs.** Duas peças que defendem a mesma via com as mesmas palavras reprovam por similaridade. Mude a via, não só a ordem das palavras.
 
-## Saída
+## Saída. Um arquivo por conjunto, sempre
 
-Para cada anúncio, entregue exatamente neste formato:
+**A copy não é resposta de chat, é arquivo.** Regra do usuário, 2026-08-26: ele lê e aprova abrindo o arquivo, não rolando a conversa.
+
+Grave **um arquivo por conjunto, com todos os anúncios dele**. Vinte anúncios de captação viram um arquivo com os vinte, nunca vinte arquivos nem uma amostra.
+
+**Caminho, sem inventar outro:**
+
+```
+produtos/<slug>/criativos/<YYYY-MM-DD-tema>/copy-<YYYY-MM-DD-tema>.md
+```
+
+Se a pasta do conjunto ainda não existe, crie a árvore antes de escrever. O arquivo de copy é a primeira coisa que entra nela. Corrigiu a copy depois? **Edite o mesmo arquivo.** Nada de `-v2`, `-final` ou `-revisado`.
+
+Cabeçalho do arquivo, curto, para o usuário se situar em cinco segundos:
+
+```markdown
+# <Produto> · <N> anúncios · fase <Captura|Meio|Fundo>
+
+**Data:** YYYY-MM-DD · **Formato:** Feed 1080×1350 · **Público:** ...
+**Eixo:** a promessa central que todas as peças defendem
+**Metodologia:** Light Copy (VTSD), Mandala de Anúncios, skill `/anuncio-<produto>`
+```
+
+Depois do cabeçalho, cada anúncio exatamente neste formato:
 
 ```
 ## AD NN · <tipo da Mandala>
@@ -136,6 +158,26 @@ CTA: ...
 ```
 
 Sem repetir tipo da Mandala dentro do mesmo bloco, e sem repetir headline já usada em campanha anterior. Confira o histórico em `produtos/<slug>/criativos/` antes de escrever.
+
+### Como devolver o trabalho
+
+Depois de gravar o arquivo e rodar o validador com código 0, responda **curto**, com três coisas nesta ordem:
+
+1. **O caminho do arquivo**, como link clicável, para o usuário abrir e ler
+2. Quantos anúncios tem e qual é o eixo, em uma linha
+3. O resultado do validador
+
+E **pare aí**. Não cole os anúncios no chat, não comece a gerar imagem, não peça "posso seguir?" no meio de um relatório. O próximo passo é do usuário.
+
+Exemplo do tamanho certo:
+
+> A copy dos 20 anúncios de captação do SPP está em [copy-2026-09-01-captacao.md](produtos/seu-produto-pronto-com-ia/criativos/2026-09-01-captacao/copy-2026-09-01-captacao.md).
+>
+> São 20 anúncios de fase Captura, todos defendendo que dá para ter o produto digital pronto em três dias. Cada um com Head, SubHead, CTA, cena e legenda do Meta.
+>
+> Validador: 20 analisados, 0 reprovas, 0 alertas.
+>
+> Me diga o que muda ou se está aprovada, e aí eu gero as imagens.
 
 ## Tom, quando o cliente já tem anúncios rodando
 

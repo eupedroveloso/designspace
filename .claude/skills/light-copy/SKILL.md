@@ -107,9 +107,11 @@ E a regra que não é numerada porque vale para tudo: **o produto não aparece n
 
 ---
 
-## Passo 4. Medir e esperar o aval (obrigatório no DesignSpace)
+## Passo 4. Gravar o arquivo, medir e esperar o aval (obrigatório no DesignSpace)
 
-Duas travas deste projeto, que valem tanto quanto a revisão do Passo 3:
+Três travas deste projeto, que valem tanto quanto a revisão do Passo 3:
+
+0. **A copy vira arquivo antes de virar resposta.** Um arquivo por conjunto, com **todos** os anúncios dele, em `produtos/<slug>/criativos/<YYYY-MM-DD-tema>/copy-<YYYY-MM-DD-tema>.md`. Se a pasta do conjunto não existe, crie a árvore antes. Corrigiu depois? Edite o mesmo arquivo, sem `-v2` nem `-final`. O usuário lê e aprova abrindo o arquivo, então o que você devolve no chat é **o caminho dele**, não a copy colada.
 
 1. **Meça antes de entregar.** Copy de anúncio passa pelo validador, sem exceção:
 
@@ -121,10 +123,12 @@ Duas travas deste projeto, que valem tanto quanto a revisão do Passo 3:
 
 2. **Nenhuma imagem é gerada antes de o usuário aprovar a copy por escrito.** Apresentar a copy e começar a gerar na mesma passada não conta como aprovação. Ver a regra dura no `CLAUDE.md`.
 
+Devolva o trabalho curto, com três coisas nesta ordem: **o caminho do arquivo como link clicável**, quantos anúncios tem e qual o eixo em uma linha, e o resultado do validador. Depois disso, pare. O próximo passo é do usuário.
+
 ---
 
 ## Como entregar
 
-Mostre a copy pronta, limpa, sem comentário de processo no meio. Se gerou variações, numere e pergunte qual seguir. Se o projeto tiver pasta de entregas, salve o arquivo e diga o caminho. Se não tiver, entregue no chat.
+No DesignSpace vale o Passo 4 acima: a copy é gravada em arquivo e o que vai para o chat é o caminho. Fora de um conjunto de anúncios (um trecho solto, uma bio, um assunto de e-mail), mostre a copy pronta, limpa, sem comentário de processo no meio. Se gerou variações, numere e pergunte qual seguir.
 
 Nunca explique que você aplicou o checklist. O usuário quer o texto, não o relatório.

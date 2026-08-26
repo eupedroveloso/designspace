@@ -68,7 +68,7 @@ Nesta ordem, sem pular etapa:
 2. **Pesquisar o nicho** — busca web e Pinterest por *flyer, banner, post, ads, identidade visual* daquele mercado. Extrair paleta praticada, tipografia, estética fotográfica e elementos recorrentes.
 3. **Chamar o agente `copywriter-light`** — toda copy sai dele, sempre. Ele carrega a skill `/light-copy`, que é o pacote Light Copy completo (Manual da Copy, 12 proibições, 26 Elementos Literários, Mandala de Anúncios, revisora anti AI slop) e a fonte única do método. Nunca escrever copy no olho, nunca pular o agente.
 3.1. **Validar a copy por medição, antes de gastar um único crédito de imagem.** Regra dura, ver abaixo.
-3.2. **Esperar o usuário aprovar a copy por escrito.** Etapa bloqueante: nenhuma imagem é gerada antes disso. Regra dura, ver abaixo.
+3.2. **Gravar a copy inteira do conjunto num arquivo, entregar o caminho ao usuário e esperar o aval por escrito.** Etapa bloqueante: nenhuma imagem é gerada antes disso. Regra dura, ver abaixo.
 3.3. **Aprovar o plano de composição no agente `auditor-originalidade`.** Cada peça declara estrutura, técnica de ilustração, enquadramento e paleta, e nenhuma combinação se repete no conjunto. Regra dura, ver abaixo.
 4. **Carregar `/ref-ads-dna`** — o DNA visual do board de referências do usuário. Escolher a categoria (A–L) que serve o objetivo da campanha e puxar o DNA transversal: direção da luz, paleta de 2-3 cores, textura do assunto principal, formato vertical e zona de respiro para o texto. Daqui sai a **cena e o tratamento fotográfico** — nunca um layout pronto. A escolha da categoria passa antes pela regra de leitura imediata abaixo: o DNA define o acabamento, e a legibilidade define a cena.
 5. **Desenhar layout original a partir da cena.** Ver a regra de originalidade abaixo.
@@ -126,10 +126,11 @@ A sequência, sem atalho:
 | Ordem | O que acontece | Quem libera |
 |---|---|---|
 | 1 | A copy sai do agente `copywriter-light`, pela skill `/light-copy` | o agente |
-| 2 | O validador roda e sai com código 0 | `validar-copy.py` |
-| 3 | A copy é **apresentada ao usuário** e o trabalho **para** | — |
-| 4 | O usuário responde aprovando | **só o usuário** |
-| 5 | Aí sim gera imagem | — |
+| 2 | **A copy inteira do conjunto é gravada em um arquivo** | o agente |
+| 3 | O validador roda nesse arquivo e sai com código 0 | `validar-copy.py` |
+| 4 | O caminho do arquivo é **entregue ao usuário** e o trabalho **para** | — |
+| 5 | O usuário lê o arquivo e responde aprovando | **só o usuário** |
+| 6 | Aí sim gera imagem | — |
 
 **O que não conta como aprovação:**
 
@@ -139,11 +140,45 @@ A sequência, sem atalho:
 - O usuário ter pedido "faz os 30 anúncios" no começo da conversa. O pedido autoriza o trabalho, não pula a conferência da copy
 - Aprovação de piloto valendo para o lote inteiro. Piloto aprovado libera o piloto
 
-**Quando a copy muda depois de aprovada, a aprovação cai.** Head reescrita, CTA trocado, eixo novo, público novo: volta para o passo 3. Aprovação é da versão, não do arquivo.
-
-**Como apresentar, para o usuário conseguir aprovar rápido:** a copy inteira em texto, a saída do validador, e uma pergunta fechada. Nada de "posso seguir?" no meio de um relatório de dez parágrafos.
+**Quando a copy muda depois de aprovada, a aprovação cai.** Head reescrita, CTA trocado, eixo novo, público novo: reescreve o arquivo, roda o validador de novo e devolve o caminho. Aprovação é da versão, não do arquivo.
 
 **Se o usuário disser para pular esta etapa**, ele pode. É a verba dele. Registre que foi decisão dele e siga.
+
+### A copy do conjunto vira arquivo, sempre
+
+Regra do usuário, 2026-08-26. **Toda copy nasce como arquivo, nunca como texto solto no chat.** O usuário aprova lendo o arquivo, não rolando a conversa.
+
+Um arquivo por conjunto, com **todos** os anúncios dele. Vinte anúncios de captação viram um arquivo com os vinte, não vinte arquivos nem uma amostra de três.
+
+**Onde:** na raiz do conjunto, seguindo a convenção de pastas.
+
+```
+produtos/<slug>/criativos/<YYYY-MM-DD-tema>/copy-<YYYY-MM-DD-tema>.md
+```
+
+Se a pasta do conjunto ainda não existe, crie a árvore antes. O arquivo de copy é a primeira coisa que entra nela.
+
+**O que vai dentro,** por anúncio, sem exceção:
+
+- **HEAD**
+- **SUBHEAD**
+- **CTA**
+- o tipo da Mandala que sustenta a peça
+- a **CENA**, para o gerador de imagem
+- a legenda do Meta, com gancho, desenvolvimento e CTA
+- headline e descrição do Meta, com a contagem de caracteres
+
+No topo do arquivo, um cabeçalho curto: produto, data, fase do funil, formato, público e eixo da campanha. É o que deixa a leitura rápida.
+
+**Como entregar ao usuário.** Uma mensagem curta com três coisas, nesta ordem:
+
+1. **O caminho do arquivo**, como link clicável, para ele abrir e ler
+2. Quantos anúncios tem e qual é o eixo, em uma linha
+3. O resultado do validador
+
+Depois disso, **pare**. Nada de colar os vinte anúncios no chat, nada de começar a gerar imagem, nada de perguntar "posso seguir?" no meio de um relatório.
+
+**Quando a copy é corrigida, o arquivo é o mesmo.** Edite o arquivo existente e avise que ele mudou. Arquivo `-v2`, `-final`, `-revisado` só polui a pasta. Versão anterior que valha a pena guardar vai para uma pasta `_` de trabalho.
 
 ### Validar a copy antes de gerar imagem — regra dura
 
