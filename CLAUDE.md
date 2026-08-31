@@ -70,9 +70,31 @@ Nesta ordem, sem pular etapa:
 3.1. **Validar a copy por medição, antes de gastar um único crédito de imagem.** Regra dura, ver abaixo.
 3.2. **Gravar a copy inteira do conjunto num arquivo, entregar o caminho ao usuário e esperar o aval por escrito.** Etapa bloqueante: nenhuma imagem é gerada antes disso. Regra dura, ver abaixo.
 3.3. **Aprovar o plano de composição no agente `auditor-originalidade`.** Cada peça declara estrutura, técnica de ilustração, enquadramento e paleta, e nenhuma combinação se repete no conjunto. Regra dura, ver abaixo.
+3.4. **Perguntar a via de geração: Magnific direto (conector) ou prompt avançado para outra ferramenta de IA.** O usuário escolhe, e a resposta vem antes de qualquer pixel. Regra dura, ver abaixo.
 4. **Carregar `/ref-ads-dna`** — o DNA visual do board de referências do usuário. Escolher a categoria (A–L) que serve o objetivo da campanha e puxar o DNA transversal: direção da luz, paleta de 2-3 cores, textura do assunto principal, formato vertical e zona de respiro para o texto. Daqui sai a **cena e o tratamento fotográfico** — nunca um layout pronto. A escolha da categoria passa antes pela regra de leitura imediata abaixo: o DNA define o acabamento, e a legibilidade define a cena.
 5. **Desenhar layout original a partir da cena.** Ver a regra de originalidade abaixo.
 6. **Conferir contra o benchmark** do cliente e auditar com `analisador-criativo`.
+
+### Via de geração da imagem — o usuário escolhe — regra dura
+
+Acrescentada em 2026-08-31, a pedido do usuário. **Quando chegar a hora de criar as imagens, pergunte ao usuário qual via ele quer, e espere a resposta antes de gerar qualquer coisa:**
+
+| Via | O que acontece |
+|---|---|
+| **A — Magnific direto** | o fluxo atual: agente `visual-generator`, conector do Magnific, `imagen-nano-banana-2`, entrega em 1080×1350 |
+| **B — Prompt para outra ferramenta de IA** | nada é gerado no Magnific e nenhum crédito é gasto. O entregável é um **prompt extremamente avançado e detalhado** por peça, pronto para o usuário colar na IA de imagem que ele escolher |
+
+A pergunta é feita por conjunto, no momento de gerar — depois da copy aprovada e do plano de originalidade — e a escolha vale para o conjunto inteiro, salvo o usuário dizer o contrário no meio.
+
+**Tudo antes da imagem continua igual nas duas vias.** Briefing, copy pelo `copywriter-light`, validador, aprovação por escrito, plano no `auditor-originalidade`, `/ref-ads-dna`, tom positivo, leitura em um segundo — nenhuma etapa cai. Só o passo do pixel muda.
+
+**Como a via B funciona:**
+
+- Um arquivo por conjunto, na raiz dele, ao lado da copy: `prompts-<YYYY-MM-DD-tema>.md`, com os prompts de **todas** as peças do conjunto. É texto que explica a peça, então sobe no Git como a copy.
+- Cada prompt é autossuficiente: quem colar numa outra IA, sem nenhum contexto do projeto, recebe a peça certa. Por peça, o prompt declara: cena e sujeito; estrutura e onde o texto vive; técnica de ilustração; enquadramento e ângulo de câmera; paleta com os hex; direção da luz e a sombra que ela produz; textura; proporção e formato (4:5 para feed, e a variante 9:16 quando o conjunto tiver Stories); e o bloco de acabamento publicitário do `visual-generator`.
+- **Na via B o texto entra na imagem.** Head, SubHead e CTA vão dentro do prompt, entre aspas, **em PT-BR**, com posição, hierarquia e largura de mancha declaradas (a regra da mancha vale aqui também). É a exceção prevista na regra 5.2: prompt que o usuário vai colar em outra IA carrega o texto em PT-BR.
+- O corpo do prompt sai em inglês — modelos de imagem respondem melhor — com as strings de texto renderizado em PT-BR entre aspas, fechando com `no other text anywhere in the picture`.
+- As demais regras duras continuam valendo por escrito no prompt: originalidade entre peças, tom positivo sem cara de golpe, mockup real quando houver produto digital na cena, cena de UGC saída da copy.
 
 ### Organização das pastas de ADs — regra dura
 
@@ -85,6 +107,7 @@ produtos/<slug>/
 └── criativos/
     └── <YYYY-MM-DD-tema>/          o conjunto
         ├── copy-<conjunto>.md      copy aprovada, na raiz do conjunto
+        ├── prompts-<conjunto>.md   só na via B: prompts prontos para outra IA
         ├── _registro-composicoes.tsv
         ├── README.md               opcional, mapa do conjunto
         ├── <estilo-1>/
@@ -102,7 +125,7 @@ Os quatro níveis, nesta ordem: **produto → conjunto → estilo → formato.**
 | **Conjunto** | `YYYY-MM-DD-tema`. A data é a da produção, não a da campanha |
 | **Estilo** | sempre existe, mesmo quando o conjunto tem um estilo só. Nome descritivo, não `linha-B` sozinho |
 | **Formato** | `feed/` e `stories/` sempre, mesmo que uma das duas ainda esteja vazia |
-| **Raiz do conjunto** | só copy, registro de composições e README. Nenhum PNG solto |
+| **Raiz do conjunto** | só copy, arquivo de prompts (quando a via B foi escolhida), registro de composições e README. Nenhum PNG solto |
 | **Trabalho intermediário** | pasta com prefixo `_`, e nada dentro dela entra na entrega |
 
 Nome de arquivo: `<produto>-<NN>-<slug-da-head>.png`. Ex.: `flp-07-perfil-vazio.png`.

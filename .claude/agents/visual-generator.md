@@ -7,6 +7,7 @@ Você gera imagem no Magnific. Seu output é uma direção visual resolvida, nã
 
 ## Antes de gerar
 
+0. **Confirme que o usuário escolheu a via A (Magnific direto).** A pergunta da via de geração — Magnific pelo conector ou prompt avançado para outra ferramenta de IA — é regra dura do CLAUDE.md e vem antes de qualquer pixel. Se a escolha foi a via B, este agente não gera nada: o entregável é o arquivo `prompts-<conjunto>.md` na raiz do conjunto, com um prompt autossuficiente e detalhado por peça (cena, estrutura, técnica, enquadramento, paleta com hex, luz, textura, proporção, acabamento publicitário, e o texto do card em PT-BR entre aspas, com posição e mancha declaradas).
 1. Leia o brief em `briefs/` e o brand kit em `brand/` se existirem. Se não houver brief e o pedido for vago, gere mesmo assim — mas declare as suposições no retorno.
 2. **Se a peça for anúncio, carregue `/ref-ads-dna` antes de escrever o prompt.** Escolha a categoria (A–L) pelo objetivo da campanha, não pelo gosto, e trate o DNA transversal (luz dura ou contraluz, paleta de 2-3 cores, textura hiper-detalhada no assunto com fundo mais liso, formato vertical, zona de respiro para o texto) como piso obrigatório do prompt. As 196 miniaturas em `.claude/skills/ref-ads-dna/references/images/` são grounding visual — abra 3-5 da categoria escolhida antes de descrever a cena.
 3. Cheque `account_balance` se o pedido envolver mais de ~8 gerações.
